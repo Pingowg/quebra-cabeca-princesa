@@ -1,0 +1,106 @@
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif; /* Fonte mais divertida para crianças */
+  background-color: #fce4ec; /* Rosa claro de princesa */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden; /* Evita barras de rolagem desnecessárias */
+  color: #6a1b9a; /* Roxo escuro para o texto */
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  max-width: 90%;
+  width: 600px; /* Largura máxima para o container */
+}
+
+h1 {
+  color: #e91e63; /* Rosa vibrante para o título */
+  margin-bottom: 25px;
+  font-size: 2.5em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.puzzle-board {
+  display: grid;
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* 3 colunas para um quebra-cabeça 3x3 */
+  grid-template-rows: repeat(3, 1fr); /* 3 linhas */
+  gap: 5px; /* Espaço entre as peças */
+  width: 450px; /* Largura total do tabuleiro do quebra-cabeça */
+  height: 450px; /* Altura total do tabuleiro do quebra-cabeça */
+  margin: 0 auto 25px auto;
+  border: 5px solid #e91e63; /* Borda rosa forte */
+  border-radius: 10px;
+  overflow: hidden; /* Esconde qualquer coisa que transborde */
+}
+
+.puzzle-piece {
+  width: 100%;
+  height: 100%;
+  background-size: 450px 450px; /* Tamanho da imagem original para o background */
+  cursor: grab; /* Cursor de mão para indicar que é arrastável */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Borda sutil para separar as peças */
+  box-sizing: border-box; /* Garante que o padding e a borda não aumentem o tamanho total */
+  transition: transform 0.1s ease-in-out; /* Animação suave ao arrastar */
+}
+
+.puzzle-piece.dragging {
+  opacity: 0.7;
+  transform: scale(1.05); /* Levemente maior ao arrastar */
+  z-index: 10; /* Garante que a peça arrastada fique acima das outras */
+}
+
+button {
+  background-color: #ff4081; /* Rosa choque */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #e91e63; /* Rosa mais escuro ao passar o mouse */
+  transform: translateY(-2px); /* Efeito de levantar */
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #4caf50; /* Verde para mensagem de sucesso */
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+  .puzzle-board {
+    width: 300px;
+    height: 300px;
+    background-size: 300px 300px; /* Ajusta o background da imagem para telas menores */
+  }
+
+  .puzzle-piece {
+    background-size: 300px 300px; /* Ajusta o background da peça para telas menores */
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+}

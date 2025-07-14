@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
   let draggedPiece = null;
   let targetPiece = null;
 
+  // Dimensões da sua imagem princesa.jpg
+  // ***** AJUSTADAS PARA AS DIMENSÕES QUE VOCÊ FORNECEU (735x644) *****
+  const imageOriginalWidth = 735;
+  const imageOriginalHeight = 644;
+  // Largura/Altura do tabuleiro do quebra-cabeça no CSS (450px)
+  const boardSize = 450;
+
   // Função para tocar a música
   function playMusic() {
     if (backgroundMusic.paused) {
@@ -46,8 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // Calcula a posição da imagem de fundo para cada peça
       const row = Math.floor(i / gridSize);
       const col = i % gridSize;
-      const backgroundPosX = -col * (450 / gridSize); // 450px é a largura/altura do puzzle-board no CSS
-      const backgroundPosY = -row * (450 / gridSize);
+
+      // ***** ALTERAÇÃO AQUI: USANDO AS DIMENSÕES REAIS DA IMAGEM *****
+      // Calcula a posição da imagem de fundo com base no tamanho ORIGINAL da imagem
+      // E na proporção do tabuleiro (450px) em relação ao tamanho da imagem.
+      const backgroundPosX = -col * (imageOriginalWidth / gridSize);
+      const backgroundPosY = -row * (imageOriginalHeight / gridSize);
 
       piece.style.backgroundImage = `url(${imageUrl})`;
       piece.style.backgroundPosition = `${backgroundPosX}px ${backgroundPosY}px`;
